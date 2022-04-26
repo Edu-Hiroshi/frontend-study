@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import './App.css';
 import ResultList from './components/ResultList';
 import FloatingCard from './components/FloatingCard';
+import ResultControls from './components/ResultControls';
 
 function App() {
   const [descricao, setDescricao] = useState('pesquisa');
@@ -16,6 +17,8 @@ function App() {
 
     setDescricao ('pesquisado');
   }, [setDescricao]);
+  
+
 
   const handleChange = useCallback ((event) => {
     console.log ('OK - pesquisado');
@@ -30,35 +33,24 @@ function App() {
     <div>
       <div>
         {descricao}
+
+
+        <input onChange={handleChange}/>
+        
         <button onClick={handleClick}>
           pesquisar
         </button>
-        <input onChange={handleChange}>
-          local de pesquisa
-        </input>
-        
       </div>
 
       <div style={{ display: 'grid', gridTemplateRows: '1fr auto'}}>
-        <div>
-          <div>Localização</div>
-          <div>Safe</div>
-          <div>Time</div>
-        </div>
-        
+        <ResultControls/>
         <ResultList/>
-        
         <div style={{ gridRow: 2, gridColumn: 3}}>
           <FloatingCard />
         </div>
-
       </div>
-
     </div>
-
   );
-  
 };
   
-
 export default App;
